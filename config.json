@@ -1,23 +1,25 @@
 {
     "Informacion":{
-        "Tipo-De-Factura": "Facturación"
+        "Tipo-De-Factura": "Facturacion"
     },
     "Header":{
         "Logo":"./img/logo.png",
         "Empresa": {
-            "Nombre": "Sistema Web S.A. de C.V.",
-            "Dirección": "234/90, New York Street",
-            "Departamento":"United States."
+            "Nombre": "Sistema de facturación COMFENALCO SANTANDER",
+            "Direccion": "Avenida González Valencia N 52-69 piso 1, Bucaramanga, Santander",
+            "Departamento":"Colombia, Santander-Bucaramanga"
         },
         "Contactos":{
             "Sito-Web":[
                 {
-                    "Nombre":"www.sistemasweb.la"
+                    "Nombre": "sistemasweb",
+                    "Url": "www.sistemasweb.la"
                 }
             ],
             "Correo-Electronico":[
                 {
-                    "Nombre":"info@obedalvarado.pw"
+                    "Nombre":"info",
+                    "Url": "info@obedalvarado.pw"
                 }
             ],
             "Telefono":[

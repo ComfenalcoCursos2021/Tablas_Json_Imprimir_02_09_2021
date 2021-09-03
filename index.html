@@ -6,8 +6,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
   <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 </head>
 
 <body>
@@ -15,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-2-4">
-          <div class="slogan">Facturación </div>
+          <div id="tipoDeFactura" class="slogan"></div>
         </div>
         <div class="col-4 text-right">
           <a href="javascript:window.print()">Imprimir</a>
@@ -29,16 +31,13 @@
   <!--.control-bar-->
 
   <header class="row">
-    <div class="logoholder text-center">
-      <img src="./img/logo.png">
+    <div id="logo" class="logoholder text-center">
+
     </div>
     <!--.logoholder-->
 
     <div class="me">
-      <p contenteditable>
-        <strong>Sistema Web S.A. de C.V.</strong><br>
-        234/90, New York Street<br>
-        United States.<br>
+      <p id="headerEmpresa" >
 
       </p>
     </div>
@@ -193,6 +192,10 @@
 
     </div>
   </footer>
+
+  <svg id="barcode"></svg>
+  <canvas id="qr-code"></canvas>
+
 </body>
 
 </html>

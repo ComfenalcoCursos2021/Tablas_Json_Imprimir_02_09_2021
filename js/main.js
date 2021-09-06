@@ -53,6 +53,9 @@ addEventListener('DOMContentLoaded', async(e)=>{
     document.querySelector("#headerContactos").insertAdjacentElement('afterbegin', fragmen.children[0]);
 
 
+
+
+
     let sectionAutorizacionResponsable = `
     <strong>Facturar a</strong><br>
     ${data['Section-Autorizacion'].Responsable.Nombre}<br>
@@ -72,18 +75,21 @@ addEventListener('DOMContentLoaded', async(e)=>{
 
     let ListaProvedores = ``;
     for(let [id, value] of Object.entries(data['Section-Detalle'].Proveedor)){
-        ListaProvedores += `<tr class="invoice_detail">
-        <td width="20%">${value['N-Vendedor']}</td>
-        <td width="25%" style="text-align:center;">${value['Nombre']}</td>
-        <td width="25%">${value['Orden-Compra']}</td>
-        <td width="30%">${value['Términos-y-condiciones']}</td>
-      </tr>`
+        ListaProvedores += `
+        <tr class="invoice_detail">
+            <td width="20%"><a class="control removeRow" href="#">x</a><span contenteditable>${value['N-Vendedor']}</span></td>
+            <td width="22%" style="text-align:center;"><span contenteditable>${value['Nombre']}</span></td>
+            <td width="22%"><span contenteditable>${value['Orden-Compra']}</span></td>
+            <td width="34%"><span contenteditable>${value['Términos-y-condiciones']}</span></td>
+        </tr>`
     }
     document.querySelector("#sectionDetalleProveedor").insertAdjacentHTML('afterbegin', ListaProvedores);
 
-
+    let subTotal = 0;
     let ListaCompra = "";
     for(let [id, value] of Object.entries(data['Section-Detalle'].Compra)){
+        let iva = value.Precio + (value.Precio * (value.Iva / 100));
+        subTotal += iva;
         ListaCompra += `
         <tr>
           <td width='5%'><a class="control removeRow" href="#">x</a> <span contenteditable>${value['N-Vendedor']}</span></td>
@@ -92,11 +98,15 @@ addEventListener('DOMContentLoaded', async(e)=>{
           <td class="amount"><input type="text" value="${value.Cantidad}" /></td>
           <td class="rate"><input type="text" value="${new Intl.NumberFormat("de-DE").format(value.Precio)}" /></td>
           <td class="tax taxrelated">${value.Iva}</td>
-          <td class="sum"></td>
+          <td class="sum">${new Intl.NumberFormat("de-DE").format(iva)}</td>
         </tr>`;
     }
     document.querySelector("#sectionDetalleCompra").insertAdjacentHTML('afterbegin', ListaCompra);
-    
+
+    document.querySelector("#ivaApagar").insertAdjacentHTML('afterbegin', data.Iva);
+
+
+    document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotal + (subTotal * (data.Iva / 100))));
 
 
 

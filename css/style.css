@@ -471,8 +471,8 @@ h1 {
 .price:before,
 .sum:before,
 .tax:before,
-#total_price:before,
-#total_tax:before {
+#totalApagar:before,
+#ivaApagar:before {
     content: '$'
 }
 
@@ -494,7 +494,10 @@ h1 {
     position: relative;
     padding: 1rem
 }
-
+.invoicelist-body2 td,
+.invoicelist-body2 th {
+    position: relative;
+}
 .invoicelist-body tr:nth-child(even) {
     background: #ccc
 }
@@ -502,7 +505,9 @@ h1 {
 .invoicelist-body tr:hover .removeRow {
     display: block
 }
-
+.invoicelist-body2 tr:hover .removeRow {
+    display: block
+}
 .invoicelist-body input {
     display: inline;
     margin: 0;
@@ -522,6 +527,15 @@ h1 {
     text-transform: uppercase;
     cursor: pointer
 }
+.invoicelist-body2 .control {
+    display: inline-block;
+    color: white;
+    background: #009688;
+    padding: 3px 7px;
+    font-size: .9rem;
+    text-transform: uppercase;
+    cursor: pointer
+}
 
 .invoicelist-body .control:hover {
     background: #f36464
@@ -531,7 +545,10 @@ h1 {
     margin: .5rem 0;
     float: left
 }
-
+.invoicelist-body2 .newRow {
+    margin: .5rem 0;
+    float: left
+}
 .invoicelist-body .removeRow {
     display: none;
     position: absolute;
@@ -542,7 +559,16 @@ h1 {
     border-radius: 3px 0 0 3px;
     padding: .5rem
 }
-
+.invoicelist-body2 .removeRow {
+    display: none;
+    position: absolute;
+    top: .1rem;
+    bottom: .1rem;
+    left: -1.5rem;
+    font-size: .7rem;
+    border-radius: 3px 0 0 3px;
+    padding: .5rem
+}
 .invoicelist-footer {
     margin: 1rem
 }
@@ -561,7 +587,7 @@ h1 {
     padding-top: 0
 }
 
-.invoicelist-footer table #total_price {
+.invoicelist-footer table #totalApagar {
     font-size: 2rem;
     color: #009688
 }
@@ -613,6 +639,3 @@ footer p {
         outline: none
     }
 }
-
-
-/*# sourceMappingURL=main.css.map */

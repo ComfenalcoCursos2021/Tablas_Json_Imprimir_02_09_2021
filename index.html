@@ -103,20 +103,21 @@
   <!--.row-->
 
   <div class="row section" style="margin-top:-1rem">
-    <div class="col-1">
+    <div class="col-1 invoicelist-body2">
       <table style='width:100%'>
-        <thead contenteditable>
+        <thead>
           <tr class="invoice_detail">
             <th width="20%">N° Vendedor</th>
-            <th width="25%" style="text-align:center;">Vendedor</th>
-            <th width="25%">Orden de compra </th>
-            <th width="30%">Términos y condiciones</th>
+            <th width="22%" style="text-align:center;">Vendedor</th>
+            <th width="22%">Orden de compra </th>
+            <th width="34%">Términos y condiciones</th>
           </tr>
         </thead>
         <tbody id="sectionDetalleProveedor">
           
         </tbody>
       </table>
+      <a class="control newRow" href="#">+ Nueva fila</a>
     </div>
 
   </div>
@@ -124,13 +125,13 @@
 
   <div class="invoicelist-body">
     <table>
-      <thead contenteditable>
+      <thead>
         <th width="5%">Vendedor</th>
         <th width="5%">Código</th>
         <th width="60%">Descripción</th>
 
         <th width="10%">Cant.</th>
-        <th width="15%">Precio</th>
+        <th width="15%">Precio U/N</th>
         <th class="taxrelated">IVA</th>
         <th width="10%">Total</th>
       </thead>
@@ -146,11 +147,11 @@
     <table contenteditable>
       <tr class="taxrelated">
         <td>IVA:</td>
-        <td id="total_tax"></td>
+        <td id="ivaApagar"></td>
       </tr>
       <tr>
         <td><strong>Total:</strong></td>
-        <td id="total_price"></td>
+        <td id="totalApagar"></td>
       </tr>
     </table>
   </div>

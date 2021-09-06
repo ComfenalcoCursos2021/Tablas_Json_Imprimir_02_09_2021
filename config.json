@@ -10,34 +10,34 @@
             "Departamento":"Colombia, Santander-Bucaramanga"
         },
         "Contactos":{
-            "Sito-Web":[
+            "Sito Web":[
                 {
                     "Nombre": "sistemasweb",
-                    "Url": "www.sistemasweb.la"
+                    "Valor": "www.sistemasweb.la"
                 }
             ],
-            "Correo-Electronico":[
+            "Correo Electronico":[
                 {
-                    "Nombre":"info",
-                    "Url": "info@obedalvarado.pw"
+                    "Nombre":"info@obedalvarado.pw",
+                    "Valor": "mailto:info@obedalvarado.pw"
                 }
             ],
             "Telefono":[
                 {
-                    "Indicativo": "+607",
-                    "Numero": 6041872
+                    "Nombre": "+607 6041872",
+                    "Valor": "tel:+6076041872"
                 }
             ],
             "Celular":[
                 {
-                    "Indicativo": "+57",
-                    "Numero": 345908559
+                    "Nombre": "+57 345 908559",
+                    "Valor": "tel:+57345908559"
                 }
             ],
             "Redes-Sociales":[
                 {
                     "Nombre": "Twitter",
-                    "Usuario": "@alvarado_obed"
+                    "Valor": "@alvarado_obed"
                 }
             ]
         },

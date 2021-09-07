@@ -129,22 +129,21 @@
         <th width="5%">Vendedor</th>
         <th width="5%">Código</th>
         <th width="60%">Descripción</th>
-
-        <th width="10%">Cant.</th>
-        <th width="15%">Precio U/N</th>
-        <th class="taxrelated">IVA</th>
+        <th >Cant.</th>
+        <th width="20%">Precio U/N</th>
+        <th width="15%" class="taxrelated">IVA</th>
         <th width="10%">Total</th>
       </thead>
       <tbody id="sectionDetalleCompra">
         
       </tbody>
     </table>
-    <a class="control newRow" href="#">+ Nueva fila</a>
+    <a id="nuevaFilaCompra" class="control newRow" href="#">+ Nueva fila</a>
   </div>
   <!--.invoice-body-->
 
   <div class="invoicelist-footer">
-    <table contenteditable>
+    <table>
       <tr class="taxrelated">
         <td>IVA:</td>
         <td id="ivaApagar"></td>
@@ -163,7 +162,7 @@
 
   <footer class="row">
     <div class="col-1 text-center">
-      <p class="notaxrelated" contenteditable>El monto de la factura no incluye el impuesto sobre las ventas.</p>
+      <p id="FooterMensaje" class="notaxrelated"></p>
 
     </div>
   </footer>

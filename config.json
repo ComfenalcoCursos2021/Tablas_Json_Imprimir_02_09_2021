@@ -7,6 +7,7 @@
         "Logo":"./img/logo.png",
         "Empresa": {
             "Nombre": "Sistema de facturación COMFENALCO SANTANDER",
+            "NIT": "00-003",
             "Direccion": "Avenida González Valencia N 52-69 piso 1, Bucaramanga, Santander",
             "Departamento":"Colombia, Santander-Bucaramanga"
         },
@@ -128,11 +129,14 @@
                 "N-Vendedor":"FUN",
                 "Codigo": 456,
                 "Descripcion":"Camisa",
-                "Cantidad": 1,
+                "Cantidad": 2,
                 "Precio": 20000,
                 "Iva": 19
             }
         ]
+    },
+    "Footer": {
+        "Mensaje":"El monto de la factura no incluye el impuesto sobre las ventas."
     }
     
 }

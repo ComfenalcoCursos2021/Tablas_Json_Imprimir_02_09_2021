@@ -205,7 +205,8 @@ legend {
 }
 
 textarea {
-    overflow: auto
+    overflow: auto;
+    width: 100% !important;
 }
 
 optgroup {
@@ -258,7 +259,9 @@ body {
 [contenteditable]:hover,
 [contenteditable]:focus,
 input:hover,
-input:focus {
+input:focus,
+textarea:hover,
+textarea:focus {
     background: rgba(241, 76, 76, 0.1);
     outline: 1px solid #009688
 }
@@ -508,7 +511,7 @@ h1 {
 .invoicelist-body2 tr:hover .removeRow {
     display: block
 }
-.invoicelist-body input {
+.invoicelist-body input, textarea {
     display: inline;
     margin: 0;
     border: none;

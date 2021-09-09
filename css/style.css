@@ -1,5 +1,18 @@
 ﻿
-/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+:root{
+    --colorPrincipal: #009688;
+    --colorFondo:#ddd;
+    --colorSubTitulos:#000;
+    --colorParrafos:#000;
+    --colorTituloHeader:white;
+    --colorBotonImprimir: rgba(255, 255, 255, 0.8);
+    --colorEditable: rgba(241, 76, 76, 0.1);
+    --colorHoja:white;
+    --colorBotonNuevaFilaYEliminar:white;
+    --colorFondoNuevaFilaYEliminar:#f36464;
+}
+
 
 html {
     font-family: sans-serif;
@@ -61,7 +74,8 @@ abbr[title] {
 
 b,
 strong {
-    font-weight: bold
+    font-weight: bold;
+    color: var(--colorSubTitulos);
 }
 
 dfn {
@@ -222,12 +236,14 @@ td,
 th {
     padding: 0
 }
-
+th{
+    color: var(--colorSubTitulos);
+}
 html {
     font-size: 12px;
     line-height: 1.5;
     color: #000;
-    background: #ddd;
+    background: var(--colorFondo);
     -moz-box-sizing: border-box;
     box-sizing: border-box
 }
@@ -236,7 +252,7 @@ body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 6rem auto 0;
     max-width: 800px;
-    background: white;
+    background: var(--colorHoja);
     border: 1px solid #aaa;
     padding: 2rem
 }
@@ -255,15 +271,18 @@ body {
     -moz-box-sizing: inherit;
     box-sizing: inherit
 }
-
+td{
+color: var(--colorParrafos);
+}
 [contenteditable]:hover,
 [contenteditable]:focus,
 input:hover,
 input:focus,
 textarea:hover,
 textarea:focus {
-    background: rgba(241, 76, 76, 0.1);
-    outline: 1px solid #009688
+    
+    background: var(--colorEditable);
+    outline: 1px solid var(--colorPrincipal);
 }
 
 .group:after,
@@ -275,14 +294,17 @@ textarea:focus {
 }
 
 a {
-    color: #009688;
+    color: var(--colorPrincipal);;
     text-decoration: none
 }
 
 p {
-    margin: 0
+    margin: 0;
+    color:var(--colorParrafos);
 }
-
+span{
+    color: var(--colorParrafos);
+}
 .row {
     position: relative;
     display: block;
@@ -337,8 +359,8 @@ p {
     left: 0;
     right: 0;
     z-index: 100;
-    background: #009688;
-    color: white;
+    background: var(--colorPrincipal);;
+    color: var(--colorTituloHeader);
     line-height: 4rem;
     height: 4rem
 }
@@ -357,7 +379,7 @@ p {
 .control-bar a {
     margin: 0;
     padding: .5em 1em;
-    background: rgba(255, 255, 255, 0.8)
+    background: var(--colorBotonImprimir);
 }
 
 .control-bar a:hover {
@@ -395,7 +417,7 @@ p {
 header {
     margin: 1rem 0 0;
     padding: 0 0 2rem 0;
-    border-bottom: 3pt solid #009688
+    border-bottom: 3pt solid var(--colorPrincipal);
 }
 
 header p {
@@ -403,7 +425,7 @@ header p {
 }
 
 header a {
-    color: #000
+    color: var(--colorParrafos);
 }
 
 .logo {
@@ -411,7 +433,7 @@ header a {
     width: auto;
     height: auto;
     border: none;
-    fill: #009688
+    fill: var(--colorPrincipal);
 }
 
 .logoholder {
@@ -449,7 +471,7 @@ h1 {
     margin: 0;
     padding: 0;
     font-size: 2rem;
-    color: #009688
+    color: var(--colorPrincipal);
 }
 
 .details input {
@@ -464,7 +486,7 @@ h1 {
 
 
 .invoice_detail{
-	border: solid 1px #009688;
+	border: solid 1px var(--colorPrincipal);;
 	padding:10px;
 	height:25px;
 	text-align:center
@@ -523,8 +545,8 @@ h1 {
 
 .invoicelist-body .control {
     display: inline-block;
-    color: white;
-    background: #009688;
+    color: var(--colorBotonNuevaFilaYEliminar);
+    background: var(--colorPrincipal);;
     padding: 3px 7px;
     font-size: .9rem;
     text-transform: uppercase;
@@ -532,8 +554,8 @@ h1 {
 }
 .invoicelist-body2 .control {
     display: inline-block;
-    color: white;
-    background: #009688;
+    color: var(--colorBotonNuevaFilaYEliminar);
+    background: var(--colorPrincipal);;
     padding: 3px 7px;
     font-size: .9rem;
     text-transform: uppercase;
@@ -541,9 +563,11 @@ h1 {
 }
 
 .invoicelist-body .control:hover {
-    background: #f36464
+    background: var(--colorFondoNuevaFilaYEliminar);
 }
-
+.invoicelist-body2 .control:hover {
+    background: var(--colorFondoNuevaFilaYEliminar);
+}
 .invoicelist-body .newRow {
     margin: .5rem 0;
     float: left
@@ -592,7 +616,7 @@ h1 {
 
 .invoicelist-footer table #totalApagar {
     font-size: 2rem;
-    color: #009688
+    color: var(--colorPrincipal);
 }
 
 .note {
@@ -606,7 +630,8 @@ h1 {
 .note h2 {
     margin: 0;
     font-size: 1rem;
-    font-weight: bold
+    font-weight: bold;
+    color: var(--colorSubTitulos);
 }
 
 footer {

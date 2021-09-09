@@ -8,6 +8,8 @@ addEventListener('DOMContentLoaded', async(e)=>{
     //Informacion Tipo-De-Factura
     document.querySelector("#tipoDeFactura").insertAdjacentText('afterbegin', data.Informacion['Tipo-De-Factura']);
 
+
+
     //Header Logo
     let link = document.createElement('LINK');
     let myLinkObj = {
@@ -19,9 +21,10 @@ addEventListener('DOMContentLoaded', async(e)=>{
     let img = document.createElement('IMG');
     img.src = data.Header.Logo;
     img.width = "97";
-
     document.querySelector("#logo").insertAdjacentElement('afterbegin', img);
     document.head.insertAdjacentElement('beforeend', link);
+
+
 
     //Header Empresa
     let headerEmpresa = `
@@ -31,9 +34,10 @@ addEventListener('DOMContentLoaded', async(e)=>{
         ${data.Header.Empresa.Departamento}<br>`;
     let title = document.createElement('TITLE');
     title.insertAdjacentText('afterbegin', data.Header.Empresa.Nombre);
-
     document.head.insertAdjacentElement('afterbegin',title);
     document.querySelector("#headerEmpresa").insertAdjacentHTML('afterbegin', headerEmpresa);
+
+
 
     //Header Contactos
     let fragmen = document.createDocumentFragment();
@@ -55,8 +59,7 @@ addEventListener('DOMContentLoaded', async(e)=>{
 
 
 
-
-
+    //Section-Autorizacion Responsable
     let sectionAutorizacionResponsable = `
     <strong>Facturar a</strong><br>
     ${data['Section-Autorizacion'].Responsable.Nombre}<br>
@@ -65,6 +68,8 @@ addEventListener('DOMContentLoaded', async(e)=>{
     document.querySelector("#sectionAutorizacionResponsable").insertAdjacentHTML('afterbegin', sectionAutorizacionResponsable);
 
 
+
+    //Section-Autorizacion Responsable
     let sectionAutorizacionAutorizacion = `
     <strong>Aprobado por</strong><br>
     ${data['Section-Autorizacion'].Autorizacion.Nombre}<br>
@@ -74,6 +79,7 @@ addEventListener('DOMContentLoaded', async(e)=>{
 
 
 
+    //Section-Detalle Proveedor
     let ListaProvedores = ``;
     for(let [id, value] of Object.entries(data['Section-Detalle'].Proveedor)){
         ListaProvedores += `
@@ -85,6 +91,26 @@ addEventListener('DOMContentLoaded', async(e)=>{
         </tr>`
     }
     document.querySelector("#sectionDetalleProveedor").insertAdjacentHTML('afterbegin', ListaProvedores);
+    //Eliminar fila de la tabla proveedor
+    document.querySelector("#sectionDetalleProveedor").addEventListener("click", (e)=>{
+        if(e.target.nodeName == "A"){
+            e.target.parentNode.parentNode.remove();
+        }
+        e.preventDefault();
+    })
+    //Nueva fila del proveedor
+    document.querySelector("#nuevaFilaVendedor").addEventListener("click", (e)=>{
+        let plantilla = `
+        <tr class="invoice_detail">
+            <td width="20%"><a class="control removeRow" >x</a><span contenteditable>Codigo</span></td>
+            <td width="22%" style="text-align:center;"><span contenteditable>Nombre Completo</span></td>
+            <td width="22%"><span contenteditable>Generar Orden</span></td>
+            <td width="34%"><span contenteditable>Medio de pago</span></td>
+        </tr>
+        `;
+        document.querySelector("#sectionDetalleProveedor").insertAdjacentHTML('beforeend', plantilla);
+        e.preventDefault();
+    })
 
 
 
@@ -108,12 +134,8 @@ addEventListener('DOMContentLoaded', async(e)=>{
     document.querySelector("#sectionDetalleCompra").insertAdjacentHTML('afterbegin', ListaCompra);
     document.querySelector("#ivaApagar").insertAdjacentHTML('afterbegin', data.Iva);
     document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotal + (subTotal * (data.Iva / 100))));
-
-
-
-
     let tbCompras = '#sectionDetalleCompra';
-    document.querySelector(tbCompras).addEventListener("change", (e)=>{
+    let calcularFactura = (e)=>{
         console.log(e.target.value);
         let listaNodos = document.querySelectorAll(`[id="sectionDetalleCompra"] tr td input, .sum`);
         let valor = [];
@@ -132,14 +154,17 @@ addEventListener('DOMContentLoaded', async(e)=>{
         }
         document.querySelector("#totalApagar").innerHTML = "";
         document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotal + (subTotal * (data.Iva / 100))));
+    }
+    document.querySelector(tbCompras).addEventListener("change", (e)=>{
+        calcularFactura(e);
     })
-
-    document.querySelector("#FooterMensaje").insertAdjacentText('afterbegin', data.Footer.Mensaje);
-
-
-
-
-
+    document.querySelector(tbCompras).addEventListener("click", (e)=>{
+        if(e.target.nodeName == "A"){
+            e.target.parentNode.parentNode.remove();
+            calcularFactura(e);
+        }
+        e.preventDefault();
+    })
     document.querySelector("#nuevaFilaCompra").addEventListener("click", (e)=>{
         let plantilla = `<tr>
           <td width='5%'><a class="control removeRow">x</a> <span contenteditable>N° Vendedor</span></td>
@@ -156,13 +181,8 @@ addEventListener('DOMContentLoaded', async(e)=>{
 
 
 
-    // document.querySelectorAll(`[id="sectionDetalleCompra"] tr td`).addEventListener("click", (e)=>{
-    //     // let listaNodos = document.querySelectorAll(`[id="sectionDetalleCompra"] tr td input, .sum`);
-    //     console.log(e.target);
-    //     e.preventDefault();
-    // })
-
-
+    //Footer Mensaje
+    document.querySelector("#FooterMensaje").insertAdjacentText('afterbegin', data.Footer.Mensaje);
 
 
 
@@ -176,14 +196,21 @@ addEventListener('DOMContentLoaded', async(e)=>{
 
 
     // Codigo de barras
-    JsBarcode("#barcode", "Hola como esta");
+    JsBarcode("#barcode", "Fecha y codigo de la factura", {
+        lineColor: "#008544",
+        height: 40,
+        width: 1.5,
+        displayValue: false
+      });
 
     // Codigo de qr
     qr = new QRious({
         element: document.getElementById('qr-code'),
         size: 200,
-        value: "Hola monica"
+        value: "Cuenta Bancaria"
     });
-
+    qr.set({
+        foreground: "#008544",
+    });
 
 })

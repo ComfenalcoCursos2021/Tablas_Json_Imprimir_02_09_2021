@@ -1,17 +1,17 @@
 ﻿
 
 :root{
-    --colorPrincipal: #009688;
+    --colorPrincipal: #008544;
     --colorFondo:#ddd;
-    --colorSubTitulos:#000;
+    --colorSubTitulos:rgb(0, 131, 68);
     --colorParrafos:#000;
     --colorTituloHeader:white;
     --colorBotonImprimir: rgba(255, 255, 255, 0.8);
-    --colorEditable: rgba(241, 76, 76, 0.1);
+    --colorEditable: rgba(247, 115, 69, 0.1);
     --colorHoja:white;
     --colorBotonNuevaFilaYEliminar:white;
-    --colorFondoNuevaFilaYEliminar:#f36464;
-    --colorDeFondoProducto:#ccc;
+    --colorFondoNuevaFilaYEliminar:#30AC70;
+    --colorDeFondoProducto:#d1f1e271;
 }
 
 

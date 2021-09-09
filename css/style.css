@@ -11,6 +11,7 @@
     --colorHoja:white;
     --colorBotonNuevaFilaYEliminar:white;
     --colorFondoNuevaFilaYEliminar:#f36464;
+    --colorDeFondoProducto:#ccc;
 }
 
 
@@ -524,7 +525,7 @@ h1 {
     position: relative;
 }
 .invoicelist-body tr:nth-child(even) {
-    background: #ccc
+    background: var(--colorDeFondoProducto);
 }
 
 .invoicelist-body tr:hover .removeRow {

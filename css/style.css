@@ -1,19 +1,6 @@
 ﻿
 
-:root{
-    --colorPrincipal: #008544;
-    --colorFondo:#ddd;
-    --colorSubTitulos:rgb(0, 131, 68);
-    --colorParrafos:#000;
-    --colorTituloHeader:white;
-    --colorBotonImprimir: rgba(255, 255, 255, 0.8);
-    --colorEditable: rgba(247, 115, 69, 0.1);
-    --colorHoja:white;
-    --colorBotonNuevaFilaYEliminar:white;
-    --colorFondoNuevaFilaYEliminar:#30AC70;
-    --colorDeFondoProducto:#d1f1e271;
-}
-
+@import url('./color.css');
 
 html {
     font-family: sans-serif;
@@ -333,7 +320,13 @@ span{
 .col-3 {
     width: 33.33%
 }
-
+.col-2-factura{
+    width: 25%;
+}
+.col-2-codigo{
+    margin-top: -20px;
+    width: 75%;
+}
 .col-2 {
     width: 50%
 }
@@ -353,7 +346,9 @@ span{
 .text-right {
     text-align: right
 }
-
+.text-left {
+    text-align: left
+}
 .control-bar {
     position: fixed;
     top: 0;
@@ -446,13 +441,19 @@ header a {
 }
 
 .info {
-    width: 30%
+    width: 35%
 }
 
 .bank {
-    width: 26%
+    text-align: right;
+    width: 25%;
+    height: 10px;
+    margin-left: -35px;
+    margin-top: -35px;
 }
-
+#qr-code{
+    width: 100%;
+}
 .section {
     margin: 2rem 0 0
 }
@@ -496,12 +497,14 @@ h1 {
 .rate:before,
 .price:before,
 .sum:before,
-.tax:before,
-#totalApagar:before,
-#ivaApagar:before {
+#subIvaApagar:before,
+#totalApagar:before{
     content: '$'
 }
-
+.tax:before,
+#ivaApagar:before{
+    content: '%'
+}
 .invoicelist-body {
     margin: 1rem
 }
@@ -603,13 +606,14 @@ h1 {
 
 .invoicelist-footer table {
     float: right;
-    width: 25%
+    /* width: 50% */
 }
 
 .invoicelist-footer table td {
     padding: 1rem 2rem 0 1rem;
     text-align: right
 }
+
 
 .invoicelist-footer table tr:nth-child(2) td {
     padding-top: 0

@@ -48,11 +48,8 @@
     </div><!-- .info -->
 
     <div class="bank">
-      <p contenteditable>
-        Datos bacarios: <br>
-        Titular de la cuenta: <br>
-        IBAN: <br>
-        BIC:
+      <p>
+        <canvas id="qr-code"></canvas>
       </p>
     </div>
     <!--.bank-->
@@ -62,16 +59,14 @@
 
   <div class="row section">
 
-    <div class="col-2">
+    <div class="col-2-factura">
       <h1 contenteditable="">Factura</h1>
     </div>
     <!--.col-->
 
-    <div class="col-2 text-right details">
-      <p contenteditable>
-        Fecha: <input type="text" class="datePicker" /><br>
-        Factura #: <input type="text" value="100" /><br>
-        Vence: <input class="twoweeks" type="text" />
+    <div class="col-2-codigo text-left details">
+      <p>
+        <svg id="barcode"></svg>
       </p>
     </div>
     <!--.col-->
@@ -128,10 +123,10 @@
       <thead>
         <th width="5%">Vendedor</th>
         <th width="5%">Código</th>
-        <th width="60%">Descripción</th>
+        <th width="50%">Descripción</th>
         <th >Cant.</th>
         <th width="20%">Precio U/N</th>
-        <th width="15%" class="taxrelated">IVA</th>
+        <th width="18%" class="taxrelated">IVA</th>
         <th width="10%">Total</th>
       </thead>
       <tbody id="sectionDetalleCompra">
@@ -144,6 +139,10 @@
 
   <div class="invoicelist-footer">
     <table>
+      <tr>
+        <td>Sub Totla IVA:</td>
+        <td id="subIvaApagar">0</td>
+      </tr>
       <tr class="taxrelated">
         <td>IVA:</td>
         <td id="ivaApagar"></td>
@@ -166,14 +165,6 @@
 
     </div>
   </footer>
-
-  <!-- https://lindell.me/JsBarcode/ -->
-  <svg id="barcode"></svg>
-
-  <!-- https://www.studytonight.com/post/javascript-qr-code-generator -->
-  <canvas id="qr-code"></canvas>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
 </body>
 
 </html>

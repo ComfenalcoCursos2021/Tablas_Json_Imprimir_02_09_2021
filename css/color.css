@@ -1,0 +1,13 @@
+:root{
+    --colorPrincipal: #008544;
+    --colorFondo:#ddd;
+    --colorSubTitulos:#008344;
+    --colorParrafos:#000;
+    --colorTituloHeader:#fff;
+    --colorBotonImprimir: #ffffffcc;
+    --colorEditable: #f773451a;
+    --colorHoja:#fff;
+    --colorBotonNuevaFilaYEliminar:#fff;
+    --colorFondoNuevaFilaYEliminar:#30AC70;
+    --colorDeFondoProducto:#d1f1e271; 
+}

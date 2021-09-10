@@ -2,8 +2,12 @@
 addEventListener('DOMContentLoaded', async(e)=>{
 
     let peticion = await fetch('./config.json');
+    let peticion2 = await fetch('./css/color.css');
     let data = await peticion.json();
-    console.log(data);
+    let color = await peticion2.text();
+    let obj = Object(color).slice(5).replace(/[$;]/g,'",').replace(/[$#]/g,'"#').replace(/[$-]/g,'').replace(/[$\r]/g,'').replace(/[$\n]/g,'').replace(/[$\\]/g,'').replace(/[$    ]/g,'');
+    console.log(Object(obj));
+
 
     //Informacion Tipo-De-Factura
     document.querySelector("#tipoDeFactura").insertAdjacentText('afterbegin', data.Informacion['Tipo-De-Factura']);
@@ -58,6 +62,16 @@ addEventListener('DOMContentLoaded', async(e)=>{
     document.querySelector("#headerContactos").insertAdjacentElement('afterbegin', fragmen.children[0]);
 
 
+    // Codigo de qr
+    qr = new QRious({
+        element: document.getElementById('qr-code'),
+        value: JSON.stringify(data.Header["Token-Verificacion"])
+    });
+    qr.set({
+        foreground: "#008544",
+        size: 150,
+        background: "transparent"
+    });
 
     //Section-Autorizacion Responsable
     let sectionAutorizacionResponsable = `
@@ -78,6 +92,16 @@ addEventListener('DOMContentLoaded', async(e)=>{
     document.querySelector("#sectionAutorizacionAutorizacion").insertAdjacentHTML('afterbegin', sectionAutorizacionAutorizacion);
 
 
+
+    // Section-Autorizacion Facturado
+    // Codigo de barras
+    JsBarcode("#barcode", JSON.stringify(data['Section-Autorizacion'].Facturado['Numero-Factura']), {
+        lineColor: "#008544",
+        height: 40,
+        width: 1.5,
+        displayValue: false,
+        background: "transparent"
+    });
 
     //Section-Detalle Proveedor
     let ListaProvedores = ``;
@@ -117,42 +141,48 @@ addEventListener('DOMContentLoaded', async(e)=>{
 
     let subTotal = 0;
     let ListaCompra = "";
+    let subTotalIva = 0;
     for(let [id, value] of Object.entries(data['Section-Detalle'].Compra)){
-        let iva = (value.Precio + (value.Precio * (value.Iva / 100))) * value.Cantidad;
+        subTotalIva += value.Precio * ((value.Iva / 100) * value.Cantidad);
+        let iva = value.Precio + subTotalIva;
         subTotal += iva;
         ListaCompra += `
         <tr>
           <td width='5%'><a class="control removeRow">x</a> <span contenteditable>${value['N-Vendedor']}</span></td>
           <td width='5%'><span contenteditable>${value.Codigo}</span></td>
-          <td width='60%'><textarea rows="1" >${value.Descripcion}</textarea></td>
+          <td width='50%'><textarea rows="1" >${value.Descripcion}</textarea></td>
           <td class="amount"><input type="text" value="${value.Cantidad}" /></td>
           <td width="20%" class="rate"><input type="text" value="${new Intl.NumberFormat("de-DE").format(value.Precio)}" /></td>
-          <td width="15%" class="tax taxrelated"><input type="text" value="${value.Iva}" /></td>
+          <td width="18%" class="tax taxrelated"><input type="text" value="${value.Iva}" /></td>
           <td width="10%" class="sum">${new Intl.NumberFormat("de-DE").format(iva)}</td>
         </tr>`;
     }
     document.querySelector("#sectionDetalleCompra").insertAdjacentHTML('afterbegin', ListaCompra);
     document.querySelector("#ivaApagar").insertAdjacentHTML('afterbegin', data.Iva);
     document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotal + (subTotal * (data.Iva / 100))));
+    document.querySelector("#subIvaApagar").innerHTML = "";
+    document.querySelector("#subIvaApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotalIva));
     let tbCompras = '#sectionDetalleCompra';
     let calcularFactura = (e)=>{
-        console.log(e.target.value);
         let listaNodos = document.querySelectorAll(`[id="sectionDetalleCompra"] tr td input, .sum`);
         let valor = [];
         let subTotal = 0;
+        let subTotalIva = 0;
         for(let [id, valu] of Object.entries(listaNodos)){
             if(valu.nodeName!="TD"){
                 valu.value = new Intl.NumberFormat("de-DE").format(valu.value.replace(/[$.]/g,''));
                 valor.push(parseInt(valu.value.replace(/[$.]/g,'')));
             }else{
-                let iva = (valor[1] + (valor[1] * (valor[2] / 100))) * valor[0];
+                subTotalIva += (valor[1] * (valor[2] / 100)) * valor[0];
+                let iva = valor[1] + subTotalIva;
                 valu.textContent = new Intl.NumberFormat("de-DE").format(iva);
                 subTotal += iva;
-                console.log(valor);
                 valor = [];
             }
         }
         document.querySelector("#totalApagar").innerHTML = "";
+        document.querySelector("#subIvaApagar").innerHTML = "";
+        document.querySelector("#subIvaApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotalIva));
         document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotal + (subTotal * (data.Iva / 100))));
     }
     document.querySelector(tbCompras).addEventListener("change", (e)=>{
@@ -195,22 +225,8 @@ addEventListener('DOMContentLoaded', async(e)=>{
 
 
 
-    // Codigo de barras
-    JsBarcode("#barcode", "Fecha y codigo de la factura", {
-        lineColor: "#008544",
-        height: 40,
-        width: 1.5,
-        displayValue: false
-      });
+    
 
-    // Codigo de qr
-    qr = new QRious({
-        element: document.getElementById('qr-code'),
-        size: 200,
-        value: "Cuenta Bancaria"
-    });
-    qr.set({
-        foreground: "#008544",
-    });
+    
 
 })

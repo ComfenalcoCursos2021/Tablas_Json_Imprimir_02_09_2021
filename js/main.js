@@ -4,10 +4,10 @@ addEventListener('DOMContentLoaded', async(e)=>{
     let peticion = await fetch('./config.json');
     let peticion2 = await fetch('./css/color.css');
     let data = await peticion.json();
-    let color = await peticion2.text();
-    let obj = Object(color).slice(5).replace(/[$;]/g,'",').replace(/[$#]/g,'"#').replace(/[$-]/g,'').replace(/[$\r]/g,'').replace(/[$\n]/g,'').replace(/[$\\]/g,'').replace(/[$    ]/g,'');
-    console.log(Object(obj));
-
+    let obj = await peticion2.text();
+    let color = JSON.parse(Object(obj).slice(5).replace(/[$;]/g,'",').replace(/[$#]/g,'"#').replace(/[$-]/g,'').replace(/color/g,'"color').replace(/[$:]/g,'":').replace(/[$\r]/g,'').replace(/[$\n]/g,'').replace(/[$ ]/g,'').replace(/,}/g,'}'));
+    console.log(data);
+    console.log(color);
 
     //Informacion Tipo-De-Factura
     document.querySelector("#tipoDeFactura").insertAdjacentText('afterbegin', data.Informacion['Tipo-De-Factura']);
@@ -68,9 +68,9 @@ addEventListener('DOMContentLoaded', async(e)=>{
         value: JSON.stringify(data.Header["Token-Verificacion"])
     });
     qr.set({
-        foreground: "#008544",
+        foreground: color.colorPrincipal,
         size: 150,
-        background: "transparent"
+        background: color.colorFondoQrBarras
     });
 
     //Section-Autorizacion Responsable
@@ -96,11 +96,11 @@ addEventListener('DOMContentLoaded', async(e)=>{
     // Section-Autorizacion Facturado
     // Codigo de barras
     JsBarcode("#barcode", JSON.stringify(data['Section-Autorizacion'].Facturado['Numero-Factura']), {
-        lineColor: "#008544",
+        lineColor: color.colorPrincipal,
         height: 40,
         width: 1.5,
         displayValue: false,
-        background: "transparent"
+        background: color.colorFondoQrBarras
     });
 
     //Section-Detalle Proveedor

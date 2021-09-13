@@ -324,7 +324,7 @@ span{
     width: 25%;
 }
 .col-2-codigo{
-    margin-top: -20px;
+    margin-top: -15px;
     width: 75%;
 }
 .col-2 {
@@ -452,6 +452,9 @@ header a {
     margin-top: -35px;
 }
 #qr-code{
+    width: 100%;
+}
+#barcode{
     width: 100%;
 }
 .section {

@@ -140,11 +140,13 @@ addEventListener('DOMContentLoaded', async(e)=>{
 
 
     let subTotal = 0;
+    let TotalApagarIva = 0;
     let ListaCompra = "";
     let subTotalIva = 0;
     for(let [id, value] of Object.entries(data['Section-Detalle'].Compra)){
-        subTotalIva += value.Precio * ((value.Iva / 100) * value.Cantidad);
-        let iva = value.Precio + subTotalIva;
+        subTotalIva = value.Precio * ((value.Iva / 100) * value.Cantidad);
+        TotalApagarIva += subTotalIva;
+        let iva = (value.Precio * value.Cantidad) + subTotalIva;
         subTotal += iva;
         ListaCompra += `
         <tr>
@@ -161,20 +163,23 @@ addEventListener('DOMContentLoaded', async(e)=>{
     document.querySelector("#ivaApagar").insertAdjacentHTML('afterbegin', data.Iva);
     document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotal + (subTotal * (data.Iva / 100))));
     document.querySelector("#subIvaApagar").innerHTML = "";
-    document.querySelector("#subIvaApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotalIva));
+    document.querySelector("#subIvaApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(TotalApagarIva));
     let tbCompras = '#sectionDetalleCompra';
     let calcularFactura = (e)=>{
         let listaNodos = document.querySelectorAll(`[id="sectionDetalleCompra"] tr td input, .sum`);
         let valor = [];
         let subTotal = 0;
         let subTotalIva = 0;
+        let TotalApagarIva = 0;
         for(let [id, valu] of Object.entries(listaNodos)){
             if(valu.nodeName!="TD"){
                 valu.value = new Intl.NumberFormat("de-DE").format(valu.value.replace(/[$.]/g,''));
                 valor.push(parseInt(valu.value.replace(/[$.]/g,'')));
             }else{
-                subTotalIva += (valor[1] * (valor[2] / 100)) * valor[0];
-                let iva = valor[1] + subTotalIva;
+                console.log(valor);
+                subTotalIva = (valor[1] * (valor[2] / 100)) * valor[0];
+                TotalApagarIva += subTotalIva;
+                let iva = (valor[1] * valor[0]) + subTotalIva;
                 valu.textContent = new Intl.NumberFormat("de-DE").format(iva);
                 subTotal += iva;
                 valor = [];
@@ -182,7 +187,7 @@ addEventListener('DOMContentLoaded', async(e)=>{
         }
         document.querySelector("#totalApagar").innerHTML = "";
         document.querySelector("#subIvaApagar").innerHTML = "";
-        document.querySelector("#subIvaApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotalIva));
+        document.querySelector("#subIvaApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(TotalApagarIva));
         document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotal + (subTotal * (data.Iva / 100))));
     }
     document.querySelector(tbCompras).addEventListener("change", (e)=>{

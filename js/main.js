@@ -42,24 +42,29 @@ addEventListener('DOMContentLoaded', async(e)=>{
     document.querySelector("#headerEmpresa").insertAdjacentHTML('afterbegin', headerEmpresa);
 
 
+    const plantillaContactos = (data)=>{
+        let fragmen = document.createDocumentFragment();
+        let p = document.createElement('P');
+        fragmen.append(p)
+        for(let key in data){
+            let strong = document.createElement('STRONG');
+            let texto = document.createTextNode(`${key} :`);
+            strong.appendChild(texto);
+            fragmen.children[0].appendChild(strong);
+            for(let [id, value] of Object.entries(data[key])){
+                let a = document.createElement('A');
+                let br = document.createElement('BR');
+                a.href = value.Valor;
+                a.insertAdjacentText('afterbegin', value.Nombre);
+                fragmen.children[0].appendChild(a);
+                fragmen.children[0].appendChild(br);
+            }
+        }
+        return fragmen.children[0];
+    }
 
     //Header Contactos
-    let fragmen = document.createDocumentFragment();
-    let p = document.createElement('P');
-    fragmen.append(p)
-    for(let key in data.Header.Contactos){
-        let texto = document.createTextNode(`${key} :`);
-        fragmen.children[0].appendChild(texto);
-        for(let [id, value] of Object.entries(data.Header.Contactos[key])){
-            let a = document.createElement('A');
-            let br = document.createElement('BR');
-            a.href = value.Valor;
-            a.insertAdjacentText('afterbegin', value.Nombre);
-            fragmen.children[0].appendChild(a);
-            fragmen.children[0].appendChild(br);
-        }
-    }
-    document.querySelector("#headerContactos").insertAdjacentElement('afterbegin', fragmen.children[0]);
+    document.querySelector("#headerContactos").insertAdjacentElement('afterbegin',plantillaContactos(data.Header.Contactos));
 
 
     // Codigo de qr
@@ -81,6 +86,10 @@ addEventListener('DOMContentLoaded', async(e)=>{
     ${data['Section-Autorizacion'].Responsable['Dirrecion-Completa']}<br>`;
     document.querySelector("#sectionAutorizacionResponsable").insertAdjacentHTML('afterbegin', sectionAutorizacionResponsable);
 
+    document.querySelector("#sectionAutorizacionResponsable").insertAdjacentHTML('beforeend', plantillaContactos(data['Section-Autorizacion'].Responsable.Contactos).innerHTML);
+ 
+
+   
 
 
     //Section-Autorizacion Responsable
@@ -91,6 +100,7 @@ addEventListener('DOMContentLoaded', async(e)=>{
     ${data['Section-Autorizacion'].Autorizacion['Dirrecion-Completa']}<br>`;
     document.querySelector("#sectionAutorizacionAutorizacion").insertAdjacentHTML('afterbegin', sectionAutorizacionAutorizacion);
 
+    document.querySelector("#sectionAutorizacionAutorizacion").insertAdjacentHTML('beforeend', plantillaContactos(data['Section-Autorizacion'].Autorizacion.Contactos).innerHTML);
 
 
     // Section-Autorizacion Facturado
@@ -138,7 +148,13 @@ addEventListener('DOMContentLoaded', async(e)=>{
 
 
 
-
+    document.querySelector('#sectionDetalleCompra').addEventListener('keydown',(e)=>{
+        var el = e.target;
+        setTimeout(function(){
+          el.style.cssText = 'height:auto; overflow-y: hidden; resize: none;';
+          el.style.cssText = 'height:' + (el.scrollHeight+5) + 'px; overflow-y: hidden; resize: none;';
+        },0);
+    });
     let subTotal = 0;
     let TotalApagarIva = 0;
     let ListaCompra = "";
@@ -152,7 +168,7 @@ addEventListener('DOMContentLoaded', async(e)=>{
         <tr>
           <td width='5%'><a class="control removeRow">x</a> <span contenteditable>${value['N-Vendedor']}</span></td>
           <td width='5%'><span contenteditable>${value.Codigo}</span></td>
-          <td width='50%'><textarea rows="1" >${value.Descripcion}</textarea></td>
+          <td width='50%'><textarea rows="3" style="resize: none;">${value.Descripcion}</textarea></td>
           <td class="amount"><input type="text" value="${value.Cantidad}" /></td>
           <td width="20%" class="rate"><input type="text" value="${new Intl.NumberFormat("de-DE").format(value.Precio)}" /></td>
           <td width="18%" class="tax taxrelated"><input type="text" value="${value.Iva}" /></td>
@@ -161,7 +177,7 @@ addEventListener('DOMContentLoaded', async(e)=>{
     }
     document.querySelector("#sectionDetalleCompra").insertAdjacentHTML('afterbegin', ListaCompra);
     document.querySelector("#ivaApagar").insertAdjacentHTML('afterbegin', data.Iva);
-    document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotal + (subTotal * (data.Iva / 100))));
+    document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(Math.round(subTotal + (subTotal * (data.Iva / 100)))));
     document.querySelector("#subIvaApagar").innerHTML = "";
     document.querySelector("#subIvaApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(TotalApagarIva));
     let tbCompras = '#sectionDetalleCompra';
@@ -176,7 +192,6 @@ addEventListener('DOMContentLoaded', async(e)=>{
                 valu.value = new Intl.NumberFormat("de-DE").format(valu.value.replace(/[$.]/g,''));
                 valor.push(parseInt(valu.value.replace(/[$.]/g,'')));
             }else{
-                console.log(valor);
                 subTotalIva = (valor[1] * (valor[2] / 100)) * valor[0];
                 TotalApagarIva += subTotalIva;
                 let iva = (valor[1] * valor[0]) + subTotalIva;
@@ -188,7 +203,7 @@ addEventListener('DOMContentLoaded', async(e)=>{
         document.querySelector("#totalApagar").innerHTML = "";
         document.querySelector("#subIvaApagar").innerHTML = "";
         document.querySelector("#subIvaApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(TotalApagarIva));
-        document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(subTotal + (subTotal * (data.Iva / 100))));
+        document.querySelector("#totalApagar").insertAdjacentText('afterbegin', new Intl.NumberFormat("de-DE").format(Math.round(subTotal + (subTotal * (data.Iva / 100)))));
     }
     document.querySelector(tbCompras).addEventListener("change", (e)=>{
         calcularFactura(e);
@@ -226,6 +241,8 @@ addEventListener('DOMContentLoaded', async(e)=>{
 
 
 
+         
+ 
 
 
 

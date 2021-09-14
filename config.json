@@ -1,99 +1,105 @@
 {
-    "Iva": 0,
+    "Iva": 4,
     "Informacion":{
-        "Tipo-De-Factura": "Facturacion"
+        "Tipo-De-Factura": "Plantilla de facturación para realizar compras"
     },
     "Header":{
         "Logo":"./img/logo.png",
         "Empresa": {
             "Nombre": "Sistema de facturación COMFENALCO SANTANDER",
-            "NIT": "00-003",
-            "Direccion": "Avenida González Valencia N 52-69 piso 1, Bucaramanga, Santander",
+            "NIT": "NO Registrado xxxx",
+            "Direccion": "Avenida González Valencia N 52-69 piso 1",
             "Departamento":"Colombia, Santander-Bucaramanga"
         },
         "Contactos":{
             "Sito Web":[
                 {
-                    "Nombre": " sistemasweb",
-                    "Valor": "www.sistemasweb.la"
+                    "Nombre": " Curso maquetación web,",
+                    "Valor": "https://www.unc.edu.co/curso-de-fundamentos-de-html-y-css/"
+                },
+                {
+                    "Nombre": " Diplomado de Javascript,",
+                    "Valor": "https://www.unc.edu.co/diplomado-de-fundamentos-basicos-del-lenguaje-javascript/"
+                },
+                {
+                    "Nombre": " Diplomado de PHP,",
+                    "Valor": "https://www.unc.edu.co/diplomado-de-fundamentos-basico-de-php-css-y-html/"
                 }
             ],
             "Correo Electronico":[
                 {
-                    "Nombre":"info@obedalvarado.pw",
-                    "Valor": "mailto:info@obedalvarado.pw"
+                    "Nombre":"educacioncontinua04@unc.edu.co",
+                    "Valor": "mailto:educacioncontinua04@unc.edu.co"
                 }
             ],
             "Telefono":[
                 {
-                    "Nombre": "+607 6041872",
-                    "Valor": "tel:+6076041872"
+                    "Nombre": "+7 6577000",
+                    "Valor": "tel:+76577000"
                 }
             ],
             "Celular":[
                 {
-                    "Nombre": "+57 345 908559",
-                    "Valor": "tel:+57345908559"
+                    "Nombre": "+57 3043640755",
+                    "Valor": "tel:+573043640755"
                 }
             ],
             "Redes-Sociales":[
                 {
-                    "Nombre": "Twitter",
-                    "Valor": "@alvarado_obed"
+                    "Nombre": "instagram - laudecomfenalco",
+                    "Valor": "https://www.instagram.com/laudecomfenalco/"
+                },
+                {
+                    "Nombre": "facebook - Fundación Universitaria Comfenalco Santander",
+                    "Valor": "https://www.facebook.com/unc.edu.co"
                 }
             ]
         },
         "Comentario":"// Datos enviados por el forulario",
         "Token-Verificacion":{
-            "Nombre-Banco":"Bancolombia",
-            "Producto":"Nequi",
-            "Nombre-Titular":"MIGUEL ANGEL CASTRO ESCAMILLA",
-            "Tonken-Validacion":"gbh-5465fd-5449sdf-sdfsdf",
-            "Token-Aprobacion":"tyh-sdfss-sefse-sefse",
-            "Cuenta-Bancaria":"6324-8426-8416-5976"
+            "Nombre-Banco":"Prueba: Bancolombia",
+            "Producto":"Prueba: Nequi",
+            "Nombre-Titular":"Prueba: MIGUEL ANGEL CASTRO ESCAMILLA",
+            "Tonken-Validacion":"Prueba: gbh-5465fd-5449sdf-sdfsdf",
+            "Token-Aprobacion":"Prueba: tyh-sdfss-sefse-sefse",
+            "Cuenta-Bancaria":"Prueba: 6324-8426-8416-5976"
         }
     },
     "Comentario":"// Datos enviados por el forulario",
     "Section-Autorizacion":{
         "Facturado":{
-            "Fecha-Factura":"02-09-2021",
+            "Fecha-Factura":"09-08-2021",
             "Numero-Factura":"BG-100-2845-5",
-            "Fecha-Vencimiento":"07-09-2021"
+            "Fecha-Vencimiento":"30-09-2021"
         },
         "Responsable": {
-            "Nombre":"Miguel Angel Castro Escamilla",
+            "Nombre":"Julian Gonzales Sanchez",
             "Empresa":"Fundacion universitaria de confenalco",
-            "Dirrecion-Completa":"Calle 11",
+            "Dirrecion-Completa":"Avenida González Valencia N 52-69 piso 1",
             "Contactos":{
                 "Telefono":[
                     {
-                        "Indicativo": "+607",
-                        "Numero": 6300159
+                        "Nombre": "+7 6577000",
+                        "Valor": "tel:+76577000"
                     }
                 ],
                 "Celular":[
                     {
-                        "Indicativo": "+57",
-                        "Numero": 3041782344
+                        "Nombre": "+57 3043640755",
+                        "Valor": "tel:+573043640755"
                     }
                 ]
             }
         },
         "Autorizacion":{
-            "Nombre":"Jose Alfredo Jimenez García",
-            "Empresa":"COLFILTES",
-            "Dirrecion-Completa":"CRA 20 # 50 - 67",
+            "Nombre":"Miguel Angel Castro Escamilla",
+            "Empresa":"Fundacion universitaria de confenalco",
+            "Dirrecion-Completa":"Avenida González Valencia N 52-69 piso 1",
             "Contactos":{
-                "Telefono":[
-                    {
-                        "Indicativo": "+607",
-                        "Numero": 6874125
-                    }
-                ],
                 "Celular":[
                     {
-                        "Indicativo": "+57",
-                        "Numero": 3017854211
+                        "Nombre": "+57 3043640755",
+                        "Valor": "tel:+573043640755"
                     }
                 ]
             }
@@ -114,29 +120,57 @@
                 "Nombre":"Luis Felipe Melo Carrillo",
                 "Orden-Compra":"#PO-2021",
                 "Términos-y-condiciones":"Pago al contado efectivo-tarjeta de credito"
+            },
+            {
+                "N-Vendedor":"DJX",
+                "Nombre":"José Alfredo Jiménez García",
+                "Orden-Compra":"#PO-2022",
+                "Términos-y-condiciones":"Tarjeta de Credito"
+            },
+            {
+                "N-Vendedor":"IVS",
+                "Nombre":"Javier Sauza Caballero",
+                "Orden-Compra":"#PO-2023",
+                "Términos-y-condiciones":"Nequi"
             }
         ],
         "Compra":[
             {
                 "N-Vendedor":"DHL",
-                "Codigo": 123,
-                "Descripcion":"Computador",
-                "Cantidad": 2,
-                "Precio": 2000000,
-                "Iva": 16
+                "Codigo": "632-JGUY",
+                "Descripcion":"Computador Portátil Acer Gaming 15.6 pulgadas Ci5 8GB 512GB SSD AN515-54-51HZ",
+                "Cantidad": 1,
+                "Precio": 3282330,
+                "Iva": 19
             },
             {
                 "N-Vendedor":"FUN",
-                "Codigo": 456,
-                "Descripcion":"Camisa",
+                "Codigo": "842-POJR",
+                "Descripcion":"Camiseta Publicitaria Blanca Campañas Eventos Dotaciones",
                 "Cantidad": 2,
-                "Precio": 20000,
+                "Precio": 8990,
+                "Iva": 0
+            },
+            {
+                "N-Vendedor":"DJX",
+                "Codigo": "249-NIFP",
+                "Descripcion":"Royal County Of Berkshire Polo Club",
+                "Cantidad": 1,
+                "Precio": 65900,
+                "Iva": 19
+            },
+            {
+                "N-Vendedor":"IVS",
+                "Codigo": "731-OHEO",
+                "Descripcion":"Televisor Samsung 50' Crystal UHD 4K Smart TV UN50AU8000KXZL",
+                "Cantidad": 1,
+                "Precio": 1999912,
                 "Iva": 19
             }
         ]
     },
     "Footer": {
-        "Mensaje":"El monto de la factura no incluye el impuesto sobre las ventas."
+        "Mensaje":"El monto de la factura incluye el impuesto sobre el uso del sistema de facturacion tendra un cobro del 4% a la compra total de sus productos"
     }
     
 }

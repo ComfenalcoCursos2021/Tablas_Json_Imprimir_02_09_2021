@@ -449,7 +449,7 @@ header a {
     width: 25%;
     height: 10px;
     margin-left: -35px;
-    margin-top: -35px;
+    margin-top: -15px;
 }
 #qr-code{
     width: 100%;
@@ -470,6 +470,9 @@ header a {
 
 .client {
     margin: 0 0 3rem 0
+}
+.client a {
+    color: var(--colorParrafos);
 }
 
 h1 {
@@ -493,7 +496,7 @@ h1 {
 .invoice_detail{
 	border: solid 1px var(--colorPrincipal);;
 	padding:10px;
-	height:25px;
+	height:24px;
 	text-align:center
 }
 
@@ -658,20 +661,21 @@ footer p {
         padding: 0;
         background: #fff
     }
+
     body {
         width: 100%;
         border: none;
         background: #fff;
         color: #000;
         margin: 0;
-        padding: 0
+        padding: 0;
     }
     .control,
     .control-bar {
-        display: none !important
+        display: none !important;
     }
     [contenteditable]:hover,
     [contenteditable]:focus {
-        outline: none
+        outline: none;
     }
 }
